@@ -1,0 +1,36 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @book.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> 
+
+<div id = "notes">
+   <%= render @book.notes %>
+
+
+
+<div>
+<%= form_for([@book,@book.notes.new]) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note, size: "25*25" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'Back', books_path %>
