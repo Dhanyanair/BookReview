@@ -1,16 +1,21 @@
 
 <p>
-  <strong>Name:</strong>
-  <%= @book.name %>
+ 
+ <span id = "bookdet">
+  <strong>Name:
+  <%= @book.name %></strong>
+
+  &nbsp &nbsp &nbsp
+ 
+  <strong>Author:
+  <%= @book.author %></strong>	
+  </span>
 </p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> 
-
+<style>
+#bookdet{font-size: 1.2em;}
+</style>
+<%= link_to 'Edit Book', edit_book_path(@book) %> 
+<br></br>
 <div id = "notes">
    <%= render @book.notes %>
 
@@ -33,4 +38,4 @@
 <% end %>
 </div>
 
-<%= link_to 'Back', books_path %>
+<%= link_to 'Back to books', books_path %>
