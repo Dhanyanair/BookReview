@@ -13,8 +13,11 @@
 
   <tbody>
     <% @books.each do |book| %>
+            <% bookapi = Book.for(book.name)%>
+            <% book1 = bookapi[0]%>
+             <% bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]%>
       <tr>
-        <td><%= image_tag(book.coverimage) %></td>
+        <td><%= image_tag(bookcover) %></td>
         <td><%= book.name %></td>
         <td><%= book.author %></td>
         <td><%= link_to 'Show', book %></td>

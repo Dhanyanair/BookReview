@@ -1,10 +1,13 @@
 class BooksController < ApplicationController
+include HTTParty
+
+
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all.paginate(page: params[:page], per_page: 10)
+    @books = Book.all.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /books/1
@@ -28,6 +31,10 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        bookapi = Book.for(@book.name)
+        book1 = bookapi[0]
+        bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]        
+        @book.update(coverimage: bookcover)        
         format.html { redirect_to books_path, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
@@ -36,6 +43,7 @@ class BooksController < ApplicationController
       end
     end
   end
+  
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
@@ -72,4 +80,3 @@ class BooksController < ApplicationController
       params.require(:book).permit(:name, :author)
     end
 end
-
