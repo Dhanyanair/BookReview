@@ -51,3 +51,5 @@ group :production do
  gem 'rails_12factor'
 end
 gem 'googlebooks', '~> 0.0.9'
+
+gem 'ratyrate'

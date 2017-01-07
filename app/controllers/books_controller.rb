@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
 include HTTParty
-
-
+  before_action :admin_only, only: [:edit, :update, :destroy]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
@@ -33,9 +32,10 @@ include HTTParty
       if @book.save
         bookapi = Book.for(@book.name)
         book1 = bookapi[0]
-        bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]        
-        @book.update(coverimage: bookcover)        
-        format.html { redirect_to books_path, notice: 'Book was successfully created.' }
+        bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]      
+        bookdescription = book1["volumeInfo"]["description"]
+        @book.update(coverimage: bookcover, description: bookdescription)        
+        format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -70,6 +70,15 @@ include HTTParty
   end
 
   private
+
+  
+   def admin_only
+      @current_user ||= Reviewer.find(session[:reviewer_id])
+     unless current_user.admin?
+       redirect_to :back, :alert => "Access denied."
+     end
+  end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])

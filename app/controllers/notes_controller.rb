@@ -1,10 +1,12 @@
 class NotesController < ApplicationController
   before_action :set_book, only: [:create, :destroy]
 
+
 def create
     @note = @book.notes.new(note_params)
 
       if @note.save
+        @note.update(revid: current_user.id, revname: current_user.name)
         redirect_to @book, notice: 'Note was successfully created.' 
       else
         redirect_to @book, alert: 'Unable to add note.Please try again' 
@@ -16,9 +18,12 @@ end
   # DELETE /books/1.json
   def destroy
     @note= @book.notes.find(params[:id])
-    @note.destroy
-    redirect_to @book, notice: 'Note was successfully deleted.' 
-    
+    if @note.revid == current_user.id 
+       @note.destroy
+       redirect_to @book, notice: 'Note was successfully deleted.' 
+    else
+       redirect_to @book, alert: 'Access denied to delete note created by another user'
+    end
   end
 
   private

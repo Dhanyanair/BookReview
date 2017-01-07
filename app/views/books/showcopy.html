@@ -1,39 +1,23 @@
 
 <p>
- <img>
+ 
+ <span id = "bookdet">
   <%=image_tag(@book.coverimage)%>
- </img>
-  <br>  </br>
-  <%= @book.description %>
+
+  <strong>Name:
+  <%= @book.name %></strong>
+
+  &nbsp &nbsp &nbsp
+ 
+  <strong>Author:
+  <%= @book.author %></strong>	
+  </span>
 </p>
 <style>
- img {
-     float: left;
-     margin: 10px 10px 10px 10px;
-}
-
+#bookdet{font-size: 1.2em;}
 </style>
-
 <%= link_to 'Edit Book', edit_book_path(@book) %> 
 <br></br>
-<br></br>
-<br></br>
-<br></br>
-<div class="row">
-
-
-  <br>
-  
-  <div class="small-2 large-4 columns">
-     
-   
-      
-     Average Rating : <%= rating_for @book,  'overallrating', disable_after_rate: false %>
-       
-
-  </div>
-</div>
-<br>
 <div id = "notes">
    <%= render @book.notes %>
 
@@ -42,9 +26,12 @@
 <div>
 <%= form_for([@book,@book.notes.new]) do |f| %>
 
-
   <div class="field">
-    <%= f.label :Comments %><br>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
     <%= f.text_field :note, size: "25*25" %>
   </div>
   <div class="actions">
@@ -52,7 +39,5 @@
   </div>
 <% end %>
 </div>
-
-
 
 <%= link_to 'Back to books', books_path %>
