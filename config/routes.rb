@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   get "/login" => "sessions#new", as: "login"
   delete "/logout" => "sessions#destroy", as: "logout"
-
+  get  '/signup',  to: 'reviewers#new'
 
   get 'sessions/create'
 
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    end
     resources :sessions, only: [:new, :create,:destroy]
 
+  resources :reviewers
   root to: "books#index"
 
   # Example of regular route:

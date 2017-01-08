@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 include HTTParty
-  before_action :admin_only, only: [:edit, :update, :destroy]
+  before_action :admin_only, only: [:edit, :new, :update, :destroy]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books

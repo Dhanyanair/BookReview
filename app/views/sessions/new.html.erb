@@ -1,19 +1,21 @@
-<h1> Welcome to book review </h1>
-<h2>Login to continue</h2>
+<h1 class = "center"> Welcome to book review </h1>
+<h3 class= "center">Login to continue</h3>
+<h3 class= "center">New User? <%= link_to "Sign up" , signup_path %> </h3>
 
-<%= form_for(:reviewer, url:sessions_path) do |f| %>
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <%= form_for(:reviewer, url:sessions_path) do |f| %>
 
 
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
   
-  <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
+    <%= f.submit "Login", class: "btn btn-primary" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Login" %>
-  </div>
+ </div>
+
+
+
 <% end %>
