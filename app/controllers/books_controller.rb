@@ -32,12 +32,12 @@ include HTTParty
       if @book.save
         bookapi = Book.for(@book.name)
         book1 = bookapi[0]
-        bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]      
-        bookdescription = book1["volumeInfo"]["description"]
-        @book.update(coverimage: bookcover, description: bookdescription)        
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
-      else
+           bookcover = book1["volumeInfo"]["imageLinks"]["smallThumbnail"]      
+           bookdescription = book1["volumeInfo"]["description"]
+           @book.update(coverimage: bookcover, description: bookdescription)        
+           format.html { redirect_to @book, notice: 'Book was successfully created.' }
+           format.json { render :show, status: :created, location: @book }
+     else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end

@@ -1,5 +1,7 @@
 class Book < ActiveRecord::Base
 include HTTParty
+  validates :name,  presence: true
+  validates :author,  presence: true
 
 default_options.update(verify: false)
  base_uri 'https://www.googleapis.com/books/v1/volumes'

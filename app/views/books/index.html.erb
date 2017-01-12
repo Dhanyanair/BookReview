@@ -14,11 +14,11 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= image_tag(book.coverimage) %></td>
+        <td><%= link_to image_tag(book.coverimage), book %></td>
         <td><strong><%= book.name  %></strong> <br></br> by <%=book.author %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to 'Edit ', edit_book_path(book) %></td>
+        <td><%= link_to ' Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
