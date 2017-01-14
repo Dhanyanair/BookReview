@@ -1,6 +1,22 @@
 
 <div class = "booklisting">
-<h1>Listing Books</h1>
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+<%= form_tag books_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil ,class: "btn btn-primary" %>
+  </p>
+<% end %>
+  </div>
+</div>
+<%= link_to ' + New Book' , new_book_path %>
+
+    <% if @books.length == 0 %>
+       <p id="error_explanation"> Sorry! No matching books found </p>
+       <%= link_to 'Back to books', books_path %>
+       <%else%>
+    <h1>Listing Books</h1>
 
 <table>
   <thead>
@@ -10,7 +26,6 @@
       <th ></th>
     </tr>
   </thead>
-
   <tbody>
     <% @books.each do |book| %>
       <tr>
@@ -18,14 +33,18 @@
         <td><strong><%= book.name  %></strong> <br></br> by <%=book.author %></td>
         
         <td><%= link_to 'Edit ', edit_book_path(book) %></td>
-        <td><%= link_to ' Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to ' Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
 <%= will_paginate @books %>
 <br>
+  <% if @books.length <5 %>
+   <%= link_to 'Back to books', books_path %>
+  <%end%>
 
-<%= link_to 'New Book', new_book_path %>
+<%end%>
 </div>

@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+
 include HTTParty
   validates :name,  presence: true
   validates :author,  presence: true
@@ -15,5 +16,14 @@ ratyrate_rateable 'overallrating'
  def self.for booktitle
  	get("",query: {q:booktitle})["items"]
  	
-end  
+end
+
+def self.search(search)
+  if search
+    Book.where('name LIKE ?', "%#{search}%")
+  else
+    Book.all
+  end
+end
+
 end

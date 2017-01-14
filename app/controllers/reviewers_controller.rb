@@ -2,26 +2,26 @@ class ReviewersController < ApplicationController
   skip_before_action :ensure_login, only: [:new, :create]
 
   def show
-    @user = Reviewer.find(params[:id])
+    @reviewer = Reviewer.find(params[:id])
     
   end
 
   def new
-      @user = Reviewer.new
+      @reviewer = Reviewer.new
 
   end
   
   def create
-      @user = Reviewer.new(user_params)   
-      if @user.save
-        redirect_to @user, notice: 'User was successfully created.'
+      @reviewer = Reviewer.new(reviewer_params)   
+      if @reviewer.save
+        redirect_to @reviewer, notice: 'User was successfully created.'
       else
         render :new 
       end
   end
   
   private
-  def user_params
+  def reviewer_params
         params.require(:reviewer).permit(:name, :email, :password,
                                      :password_confirmation)
     end

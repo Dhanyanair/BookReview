@@ -6,7 +6,9 @@ include HTTParty
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all.paginate(page: params[:page], per_page: 5)
+  
+    @books = Book.search(params[:search]).paginate(page: params[:page], per_page: 5)
+    
   end
 
   # GET /books/1
@@ -64,7 +66,7 @@ include HTTParty
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
     end
   end

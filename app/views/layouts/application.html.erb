@@ -6,23 +6,47 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Book Reviews</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+   <div class="container">
    <% if logged_in? %>
      <div style = 'float: right;'>
        Logged in as <%= current_user.name %> 
        <%= link_to "Logout", logout_path, method: :delete %>
      </div>
    <% end %>
-      
+  <div class = "flash">  
    <% flash.each do |key, value| %>
    <p id='<%= key %>'> <%= value %></p>
    <% end %>
+   </div>
 
 <%= yield %>
        <%# <%= debug(params) if Rails.env.development? %>
  
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-
+</div>
+</nav>
 
 </body>
 

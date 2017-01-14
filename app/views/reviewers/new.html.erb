@@ -2,9 +2,21 @@
 <h2 class="center">Create your account</h2>
 <br>
 
+  <% if @reviewer.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@reviewer.errors.count, "error") %> prohibited this account from being created:</h4>
+
+      <ul>
+      <% @reviewer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <div class="row">
   <div class="col-md-3 col-md-offset-4">
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@reviewer) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
