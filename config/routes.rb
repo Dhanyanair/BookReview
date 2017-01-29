@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   get "/login" => "sessions#new", as: "login"
   delete "/logout" => "sessions#destroy", as: "logout"
   get  '/signup',  to: 'reviewers#new'
+  get '/about' => "books#about"
 
   get 'sessions/create'
-
   get 'sessions/destroy'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

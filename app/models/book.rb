@@ -2,6 +2,7 @@ class Book < ActiveRecord::Base
 
 include HTTParty
   validates :name,  presence: true
+  validates_uniqueness_of :name, :message => '%{value} already exists'  
   validates :author,  presence: true
 
 default_options.update(verify: false)
@@ -20,7 +21,7 @@ end
 
 def self.search(search)
   if search
-    Book.where('name LIKE ?', "%#{search}%")
+    Book.where('LOWER(name) LIKE ?', "%#{search.strip.downcase}%")
   else
     Book.all
   end

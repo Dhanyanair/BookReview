@@ -50,3 +50,19 @@ input {
   font-weight : bold;
    }
    
+.note {
+  background : lightgray;
+  border : 1px solid;
+  border-radius : 5px;
+  width : 300px;
+  margin : 15 px;
+  padding : 5px;
+}
+
+#notice {
+color : green;
+}
+
+#alert {
+color : red;
+}

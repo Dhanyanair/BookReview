@@ -8,7 +8,6 @@ include HTTParty
   def index
   
     @books = Book.search(params[:search]).paginate(page: params[:page], per_page: 5)
-    
   end
 
   # GET /books/1
@@ -68,8 +67,14 @@ include HTTParty
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully deleted.' }
       format.json { head :no_content }
-    end
-  end
+    end  
+   end
+   
+   def about
+   
+   end
+  
+  
 
   private
 

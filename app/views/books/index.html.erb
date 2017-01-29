@@ -1,15 +1,6 @@
 
 <div class = "booklisting">
-<div class="row">
-  <div class="col-md-3 col-md-offset-4">
-<%= form_tag books_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil ,class: "btn btn-primary" %>
-  </p>
-<% end %>
-  </div>
-</div>
+
 <%= link_to ' + New Book' , new_book_path %>
 
     <% if @books.length == 0 %>

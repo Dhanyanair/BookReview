@@ -15,24 +15,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Book Reviews</a>
+          <a class="navbar-brand" <%= link_to "Book Reviews",   about_path %>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+            <li class="active"><%= link_to "Home",   books_path %></li>
+            <li><%= link_to "About",   about_path %></li>
+            <% if logged_in? %>
+            <li>
+            <%= form_tag books_path, :method => 'get' do %>      
+             <%= text_field_tag :search,  params[:search] %></li>
+            <li><%= submit_tag "Search", :name => nil ,class: "btn btn-primary" %></li>  
+            
+             <% end %>
+              <% end %>
+              
+          </ul>  	  	      
+
         </div><!--/.nav-collapse -->
+
       </div>
+     </div>
     </nav>
     
-   <div class="container">
+  <div class="container">
    <% if logged_in? %>
      <div style = 'float: right;'>
        Logged in as <%= current_user.name %> 
        <%= link_to "Logout", logout_path, method: :delete %>
-     </div>
+      </div>
    <% end %>
   <div class = "flash">  
    <% flash.each do |key, value| %>
@@ -46,7 +57,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 </div>
-</nav>
 
 </body>
 
