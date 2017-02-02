@@ -7,7 +7,7 @@ def create
 
       if @note.save
         @note.update(revid: current_user.id, revname: current_user.name)
-        redirect_to @book, notice: 'Note was successfully created.' 
+        redirect_to @book, notice: 'Comment was successfully added.' 
       else
         redirect_to @book, alert: 'Unable to add note.Please try again' 
 

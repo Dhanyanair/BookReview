@@ -17,20 +17,44 @@
           </button>
           <a class="navbar-brand" <%= link_to "Book Reviews",   about_path %>
         </div>
+        
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><%= link_to "Home",   books_path %></li>
             <li><%= link_to "About",   about_path %></li>
-            <% if logged_in? %>
-            <li>
-            <%= form_tag books_path, :method => 'get' do %>      
-             <%= text_field_tag :search,  params[:search] %></li>
-            <li><%= submit_tag "Search", :name => nil ,class: "btn btn-primary" %></li>  
+      <% if logged_in? %>
+        <li>
+	   <%= form_tag books_path, :method => 'get' do %>   
+	   <div class = "form"> 
+	   <%= collection_select :book, :genre_id, Genre.all, :id, :genre_name, prompt: true %>
+	   </div>
+	</li>
+	<li>
+	   <div class = "submitform"> 
+	   <%= submit_tag "Genre" %>
+	   </div>
+	</li>
+	   <% end %>
+        
+         <li>
+            <%= form_tag books_path, :method => 'get' do %>   
+	   <div class = "form">            
+             <%= text_field_tag 'search', nil, placeholder: 'Search books' %>
+           </div>
+          </li>
+           
+           <li>
+          <div class = "submitform"> 
+           <%= submit_tag "Search", :name => nil  %></li>  
+          </div>
             
-             <% end %>
-              <% end %>
+          <% end %>
+       <% end %>
               
-          </ul>  	  	      
+          </ul>
+        
+
+          
 
         </div><!--/.nav-collapse -->
 

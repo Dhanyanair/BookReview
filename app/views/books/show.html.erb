@@ -5,7 +5,9 @@
  </img>
 
   <br>  </br>
-  <%= @book.description %>
+  <%= @book.description %> <br> </br>
+  <span> <strong>Genre : 
+  <%=  @book.genre.genre_name %> </strong> </span>
 </p>
 <style>
  img {
@@ -14,8 +16,9 @@
 }
 
 </style>
-
-<%= link_to 'Edit Book', edit_book_path(@book) %> 
+<% if current_user.admin? %>
+   <%= link_to 'Edit Book', edit_book_path(@book) %> 
+<% end %>
 <br></br>
 <br></br>
 <br></br>

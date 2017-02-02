@@ -12,6 +12,9 @@ default_options.update(verify: false)
 ratyrate_rateable 'overallrating'  
 
   belongs_to :reviewer
+  belongs_to :genre
+
+  
   has_many :notes, dependent: :destroy
 
  def self.for booktitle
@@ -20,11 +23,17 @@ ratyrate_rateable 'overallrating'
 end
 
 def self.search(search)
-  if search
+
+   
+
+  if search 
     Book.where('LOWER(name) LIKE ?', "%#{search.strip.downcase}%")
   else
     Book.all
   end
+  
+     
+  
 end
 
 end

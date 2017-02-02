@@ -54,7 +54,7 @@ input {
   background : lightgray;
   border : 1px solid;
   border-radius : 5px;
-  width : 300px;
+  width : 350px;
   margin : 15 px;
   padding : 5px;
 }
@@ -65,4 +65,18 @@ color : green;
 
 #alert {
 color : red;
+}
+
+.form {
+  margin-left : 50px; 
+ 
+}
+
+.submitform {
+ width : 100px; 
+
+}
+
+.table {
+margin-bottom : 10px;
 }

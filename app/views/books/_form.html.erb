@@ -17,6 +17,10 @@
     <%= f.text_field :name %>
     <%= f.label :author %><br>
     <%= f.text_field :author %>
+    <%= f.label :genre %><br>
+    <%= collection_select( :book, :genre_id, Genre.all, :id, :genre_name, {},{ :multiple => false } ) %>
+    
+    
     <%= f.submit class: "btn btn-primary" %>
   </div>
   </div>

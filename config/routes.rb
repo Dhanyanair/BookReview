@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :genres
   post '/rate' => 'rater#create', :as => 'rate'
   get "/login" => "sessions#new", as: "login"
   delete "/logout" => "sessions#destroy", as: "logout"
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :create,:destroy]
 
   resources :reviewers
+    resources :genres
+
   root to: "books#index"
 
   # Example of regular route:

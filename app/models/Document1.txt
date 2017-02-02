@@ -1,0 +1,5 @@
+<input type="submit" value="Filter" />
+</form>
+            <li><%= submit_tag "Browse by Genre", :name => nil, class: "btn btn-primary" %></li> 
+            
+             <% end %> 

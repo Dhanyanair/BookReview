@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+require 'will_paginate/array'
 include HTTParty
   before_action :admin_only, only: [:edit, :new, :update, :destroy]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
@@ -6,8 +7,19 @@ include HTTParty
   # GET /books
   # GET /books.json
   def index
-  
-    @books = Book.search(params[:search]).paginate(page: params[:page], per_page: 5)
+     
+    @books = Book.search(params[:search])
+     
+    if  params[:book] and params[:book][:genre_id] > ""
+        genreid = params[:book][:genre_id].to_i
+        @books = @books.select { |b| b.genre_id == genreid }
+    end
+    
+     
+    
+    @books = @books.paginate(page: params[:page], per_page: 5)
+    
+    
   end
 
   # GET /books/1
@@ -27,6 +39,7 @@ include HTTParty
   # POST /books
   # POST /books.json
   def create
+     
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -93,6 +106,6 @@ include HTTParty
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :author)
+      params.require(:book).permit(:name, :author, :genre_id)
     end
 end
