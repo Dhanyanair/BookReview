@@ -51,10 +51,8 @@ Note.destroy_all
 Reviewer.destroy_all
 
 reviewers = Reviewer.create! [
-{name: "Dhanya" ,password:"abc123", role:0},
-{name: "testuser" ,password:"123abc", role:1},
-{name: "Bijumohan" ,password:"123abc", role:1
-}
+{name: "Dhanya" ,password:"abc123", role:0, email:"dhanyabijumohan@gmail.com"},
+{name: "Bijumohan" ,password:"123abc", role:1, email:"bijus76@gmail.com"}
 ]
 
 Book.all.each do |b|
