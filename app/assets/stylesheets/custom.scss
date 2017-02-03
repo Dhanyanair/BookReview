@@ -69,14 +69,21 @@ color : red;
 
 .form {
   margin-left : 50px; 
- 
+  
 }
 
 .submitform {
- width : 100px; 
+   
 
 }
 
 .table {
 margin-bottom : 10px;
 }
+
+@media (max-width: 767px) {
+.form {
+  margin-left :  0px; 
+  
+}
+    }

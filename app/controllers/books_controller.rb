@@ -7,7 +7,7 @@ include HTTParty
   # GET /books
   # GET /books.json
   def index
-     
+      
     @books = Book.search(params[:search])
      
     if  params[:book] and params[:book][:genre_id] > ""
@@ -50,6 +50,7 @@ include HTTParty
            bookdescription = book1["volumeInfo"]["description"]
            @book.update(coverimage: bookcover, description: bookdescription)        
            format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        
            format.json { render :show, status: :created, location: @book }
      else
         format.html { render :new }
