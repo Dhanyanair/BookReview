@@ -3,6 +3,7 @@ require 'will_paginate/array'
 include HTTParty
   before_action :admin_only, only: [:edit, :new, :update, :destroy]
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  skip_before_action :ensure_login, only: [:about]
 
   # GET /books
   # GET /books.json
